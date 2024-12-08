@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on Sig&#39;s Blog</title>
-    <link>http://localhost:1313/about/</link>
+    <link>https://mistersig.github.io/about/</link>
     <description>Recent content in About on Sig&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/about/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mistersig.github.io/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/about/</link>
+      <link>https://mistersig.github.io/about/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/about/</guid>
+      <guid>https://mistersig.github.io/about/about/</guid>
       <description>&lt;p&gt;this is an example&lt;/p&gt;</description>
     </item>
   </channel>
