@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Sig&#39;s Blog</title>
-    <link>https://mistersig.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Sig&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 08 Dec 2024 14:26:07 -0600</lastBuildDate>
-    <atom:link href="https://mistersig.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Starting A Technical Blog</title>
-      <link>https://mistersig.github.io/posts/first-post/</link>
+      <link>http://localhost:1313/posts/first-post/</link>
       <pubDate>Sun, 08 Dec 2024 14:26:07 -0600</pubDate>
-      <guid>https://mistersig.github.io/posts/first-post/</guid>
-      <description>&lt;h3 id=&#34;why-start-a-blog&#34;&gt;Why start a blog?&lt;/h3&gt;&#xA;&lt;p&gt;It&amp;rsquo;s been a long time that I wanted to start this blog. I want a place to share my toughts on technical subject matter and issues. Finally, got around to hosting and making my own with Hugo.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/first-post/</guid>
+      <description>&lt;h2 id=&#34;welcome-to-my-digital-cartography--development-journal-&#34;&gt;Welcome to My Digital Cartography &amp;amp; Development Journal 🌍🖥️&lt;/h2&gt;&#xA;&lt;h3 id=&#34;why-start-this-blog&#34;&gt;Why Start This Blog?&lt;/h3&gt;&#xA;&lt;p&gt;After years of working in Geographic Information Systems (GIS) and software development, I&amp;rsquo;ve realized that knowledge is most powerful when shared. This blog represents my commitment to:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Documenting My Learning Journey&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Capture complex technical processes&lt;/li&gt;&#xA;&lt;li&gt;Create a personal knowledge repository&lt;/li&gt;&#xA;&lt;li&gt;Help other developers navigate similar challenges&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Contribute to the GIS Community&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Share practical development tricks&lt;/li&gt;&#xA;&lt;li&gt;Provide in-depth technical guides&lt;/li&gt;&#xA;&lt;li&gt;Demystify complex geospatial workflows&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Personal Growth&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
