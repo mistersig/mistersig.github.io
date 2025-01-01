@@ -1,18 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>About on Sig&#39;s Blog</title>
-    <link>http://localhost:1313/about/</link>
-    <description>Recent content in About on Sig&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <atom:link href="http://localhost:1313/about/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>http://localhost:1313/about/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/about/</guid>
-      <description>&lt;p&gt;Hello! I’m Sig, and I’m excited to welcome you to my blog. I love exploring the intersection of technology and the environment. My journey began with a degree in Geography, which ignited my interest in how we can use spatial data to solve real-world problems.&lt;/p&gt;&#xA;&lt;p&gt;In my career, I&amp;rsquo;ve had the privilege of working with diverse teams across various sectors, including local government, tech, and real estate. I believe in the power of data to inform decision-making and drive positive change.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>About on Sig's Blog</title><link>https://mistersig.github.io/about/</link><description>Recent content in About on Sig's Blog</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://mistersig.github.io/about/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://mistersig.github.io/about/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://mistersig.github.io/about/about/</guid><description>&lt;p>Hello! I’m Sig, and I’m excited to welcome you to my blog. I love exploring the intersection of technology and the environment. My journey began with a degree in Geography, which ignited my interest in how we can use spatial data to solve real-world problems.&lt;/p>
+&lt;p>In my career, I&amp;rsquo;ve had the privilege of working with diverse teams across various sectors, including local government, tech, and real estate. I believe in the power of data to inform decision-making and drive positive change.&lt;/p></description></item></channel></rss>
