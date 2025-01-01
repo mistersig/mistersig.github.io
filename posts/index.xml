@@ -13,7 +13,7 @@
       <link>http://localhost:1313/posts/file-paths-windows/</link>
       <pubDate>Tue, 31 Dec 2024 20:59:42 -0600</pubDate>
       <guid>http://localhost:1313/posts/file-paths-windows/</guid>
-      <description></description>
+      <description>&lt;h1 id=&#34;understanding-file-paths-in-windows&#34;&gt;Understanding File Paths in Windows&lt;/h1&gt;&#xA;&lt;h2 id=&#34;basic-components-of-a-file-path&#34;&gt;Basic Components of a File Path&lt;/h2&gt;&#xA;&lt;p&gt;A Windows file path consists of three primary components:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Volume/Drive Letter&lt;/strong&gt;: Typically represented by a letter followed by a colon (e.g., &lt;code&gt;C:&lt;/code&gt;)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Directory Structure&lt;/strong&gt;: Directories separated by backslashes &lt;code&gt;\&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Filename&lt;/strong&gt;: The specific file at the end of the path&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;path-types&#34;&gt;Path Types&lt;/h2&gt;&#xA;&lt;h3 id=&#34;absolute-paths&#34;&gt;Absolute Paths&lt;/h3&gt;&#xA;&lt;p&gt;An absolute path provides the complete location of a file from the root of a drive. Example:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Getting Started With Command Prompt &amp; Powershell</title>
