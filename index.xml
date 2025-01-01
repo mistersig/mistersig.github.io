@@ -6,8 +6,22 @@
     <description>Recent content on Sig&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Dec 2024 14:26:07 -0600</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2024 20:59:42 -0600</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>File Paths Windows</title>
+      <link>http://localhost:1313/posts/file-paths-windows/</link>
+      <pubDate>Tue, 31 Dec 2024 20:59:42 -0600</pubDate>
+      <guid>http://localhost:1313/posts/file-paths-windows/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Getting Started With Command Prompt &amp; Powershell</title>
+      <link>http://localhost:1313/posts/getting-started-with-command-prompt/</link>
+      <pubDate>Tue, 31 Dec 2024 20:47:46 -0600</pubDate>
+      <guid>http://localhost:1313/posts/getting-started-with-command-prompt/</guid>
+      <description>&lt;h1 id=&#34;getting-started-with-windows-command-prompt-and-powershell&#34;&gt;Getting Started with Windows Command Prompt and PowerShell&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Understanding how to navigate the Command Prompt and PowerShell is essential for anyone in the tech industry, as these powerful command-line interfaces enable automation of complex tasks, efficient system management, and deeper access to system functionalities. Proficiency in these tools can significantly enhance productivity, streamline workflows, and provide a competitive edge in the job market, where demand for skills in PowerShell continues to grow. Additionally, with PowerShell&amp;rsquo;s cross-platform capabilities, professionals can manage diverse IT environments effectively, making it a critical skill for career advancement in today&amp;rsquo;s technology landscape.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Starting A Technical Blog</title>
       <link>http://localhost:1313/posts/first-post/</link>
