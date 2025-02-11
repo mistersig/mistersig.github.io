@@ -1,35 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sig's Blog</title><link>https://mistersig.github.io/</link><description>Recent content on Sig's Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 31 Dec 2024 20:59:42 -0600</lastBuildDate><atom:link href="https://mistersig.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>File Paths Windows</title><link>https://mistersig.github.io/posts/file-paths-windows/</link><pubDate>Tue, 31 Dec 2024 20:59:42 -0600</pubDate><guid>https://mistersig.github.io/posts/file-paths-windows/</guid><description>&lt;h1 id="understanding-file-paths-in-windows">Understanding File Paths in Windows&lt;/h1>
-&lt;h2 id="basic-components-of-a-file-path">Basic Components of a File Path&lt;/h2>
-&lt;p>A Windows file path consists of three primary components:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Volume/Drive Letter&lt;/strong>: Typically represented by a letter followed by a colon (e.g., &lt;code>C:&lt;/code>)&lt;/li>
-&lt;li>&lt;strong>Directory Structure&lt;/strong>: Directories separated by backslashes &lt;code>\&lt;/code>&lt;/li>
-&lt;li>&lt;strong>Filename&lt;/strong>: The specific file at the end of the path&lt;/li>
-&lt;/ul>
-&lt;h2 id="path-types">Path Types&lt;/h2>
-&lt;h3 id="absolute-paths">Absolute Paths&lt;/h3>
-&lt;p>An absolute path provides the complete location of a file from the root of a drive. Example:&lt;/p></description></item><item><title>Getting Started With Command Prompt &amp; Powershell</title><link>https://mistersig.github.io/posts/getting-started-with-command-prompt/</link><pubDate>Tue, 31 Dec 2024 20:47:46 -0600</pubDate><guid>https://mistersig.github.io/posts/getting-started-with-command-prompt/</guid><description>&lt;h1 id="getting-started-with-windows-command-prompt-and-powershell">Getting Started with Windows Command Prompt and PowerShell&lt;/h1>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Understanding how to navigate the Command Prompt and PowerShell is essential for anyone in the tech industry, as these powerful command-line interfaces enable automation of complex tasks, efficient system management, and deeper access to system functionalities. Proficiency in these tools can significantly enhance productivity, streamline workflows, and provide a competitive edge in the job market, where demand for skills in PowerShell continues to grow. Additionally, with PowerShell&amp;rsquo;s cross-platform capabilities, professionals can manage diverse IT environments effectively, making it a critical skill for career advancement in today&amp;rsquo;s technology landscape.&lt;/p></description></item><item><title>Starting A Technical Blog</title><link>https://mistersig.github.io/posts/first-post/</link><pubDate>Sun, 08 Dec 2024 14:26:07 -0600</pubDate><guid>https://mistersig.github.io/posts/first-post/</guid><description>&lt;h2 id="welcome-to-my-digital-cartography--development-journal-">Welcome to My Digital Cartography &amp;amp; Development Journal 🌍🖥️&lt;/h2>
-&lt;h3 id="why-start-this-blog">Why Start This Blog?&lt;/h3>
-&lt;p>After years of working in Geographic Information Systems (GIS) and software development, I&amp;rsquo;ve realized that knowledge is most powerful when shared. This blog represents my commitment to:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>&lt;strong>Documenting My Learning Journey&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>Capture complex technical processes&lt;/li>
-&lt;li>Create a personal knowledge repository&lt;/li>
-&lt;li>Help other developers navigate similar challenges&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Contribute to the GIS Community&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>Share practical development tricks&lt;/li>
-&lt;li>Provide in-depth technical guides&lt;/li>
-&lt;li>Demystify complex geospatial workflows&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Personal Growth&lt;/strong>&lt;/p></description></item><item><title>About</title><link>https://mistersig.github.io/about/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://mistersig.github.io/about/about/</guid><description>&lt;p>Hello! I’m Sig, and I’m excited to welcome you to my blog. I love exploring the intersection of technology and the environment. My journey began with a degree in Geography, which ignited my interest in how we can use spatial data to solve real-world problems.&lt;/p>
-&lt;p>In my career, I&amp;rsquo;ve had the privilege of working with diverse teams across various sectors, including local government, tech, and real estate. I believe in the power of data to inform decision-making and drive positive change.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sig&#39;s Blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Sig&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 08 Feb 2025 09:53:44 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thoughts on Geocomputing</title>
+      <link>http://localhost:1313/posts/thoughts-on-geocomputing/</link>
+      <pubDate>Sat, 08 Feb 2025 09:53:44 -0600</pubDate>
+      <guid>http://localhost:1313/posts/thoughts-on-geocomputing/</guid>
+      <description>&lt;p&gt;To see where we are going as a geospatial community, it’s my belief that we must often look back from whence we came. As a Geospatial developer who is developing my own geocomputation course, I often reflect upon geocomputing’s origins. This interdisciplinary specialization combines geospatial science and computer science and the benefits to improve efficiencies and tackle complex problems in geospatial topics in academy and industry are numerous.&#xA;While geography as a discipline has a history spanning over 2,000 years going back to ancient civilizations, most notably Eratosthenes in ancient Greece, GIS has its roots in the 1960s when Roger Tomlinson created the first Geographic Information System for the Canadian government. This marked what we now recognize as the start of the computer revolution, integrating computers into the discipline of geography and mapping our physical world. GIS has since been embraced as a standalone discipline and has also been adopted by several other disciplines and industries to solve spatial problems and build more sophisticated geographical analyses and models.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>File Paths Windows</title>
+      <link>http://localhost:1313/posts/file-paths-windows/</link>
+      <pubDate>Tue, 31 Dec 2024 20:59:42 -0600</pubDate>
+      <guid>http://localhost:1313/posts/file-paths-windows/</guid>
+      <description>&lt;h1 id=&#34;understanding-file-paths-in-windows&#34;&gt;Understanding File Paths in Windows&lt;/h1&gt;&#xA;&lt;h2 id=&#34;basic-components-of-a-file-path&#34;&gt;Basic Components of a File Path&lt;/h2&gt;&#xA;&lt;p&gt;A Windows file path consists of three primary components:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Volume/Drive Letter&lt;/strong&gt;: Typically represented by a letter followed by a colon (e.g., &lt;code&gt;C:&lt;/code&gt;)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Directory Structure&lt;/strong&gt;: Directories separated by backslashes &lt;code&gt;\&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Filename&lt;/strong&gt;: The specific file at the end of the path&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;path-types&#34;&gt;Path Types&lt;/h2&gt;&#xA;&lt;h3 id=&#34;absolute-paths&#34;&gt;Absolute Paths&lt;/h3&gt;&#xA;&lt;p&gt;An absolute path provides the complete location of a file from the root of a drive. Example:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Getting Started With Command Prompt &amp; Powershell</title>
+      <link>http://localhost:1313/posts/getting-started-with-command-prompt/</link>
+      <pubDate>Tue, 31 Dec 2024 20:47:46 -0600</pubDate>
+      <guid>http://localhost:1313/posts/getting-started-with-command-prompt/</guid>
+      <description>&lt;h1 id=&#34;getting-started-with-windows-command-prompt-and-powershell&#34;&gt;Getting Started with Windows Command Prompt and PowerShell&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Understanding how to navigate the Command Prompt and PowerShell is essential for anyone in the tech industry, as these powerful command-line interfaces enable automation of complex tasks, efficient system management, and deeper access to system functionalities. Proficiency in these tools can significantly enhance productivity, streamline workflows, and provide a competitive edge in the job market, where demand for skills in PowerShell continues to grow. Additionally, with PowerShell&amp;rsquo;s cross-platform capabilities, professionals can manage diverse IT environments effectively, making it a critical skill for career advancement in today&amp;rsquo;s technology landscape.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Starting A Technical Blog</title>
+      <link>http://localhost:1313/posts/first-post/</link>
+      <pubDate>Sun, 08 Dec 2024 14:26:07 -0600</pubDate>
+      <guid>http://localhost:1313/posts/first-post/</guid>
+      <description>&lt;h2 id=&#34;welcome-to-my-digital-cartography--development-journal-&#34;&gt;Welcome to My Digital Cartography &amp;amp; Development Journal 🌍🖥️&lt;/h2&gt;&#xA;&lt;h3 id=&#34;why-start-this-blog&#34;&gt;Why Start This Blog?&lt;/h3&gt;&#xA;&lt;p&gt;After years of working in Geographic Information Systems (GIS) and software development, I&amp;rsquo;ve realized that knowledge is most powerful when shared. This blog represents my commitment to:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Documenting My Learning Journey&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Capture complex technical processes&lt;/li&gt;&#xA;&lt;li&gt;Create a personal knowledge repository&lt;/li&gt;&#xA;&lt;li&gt;Help other developers navigate similar challenges&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Contribute to the GIS Community&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Share practical development tricks&lt;/li&gt;&#xA;&lt;li&gt;Provide in-depth technical guides&lt;/li&gt;&#xA;&lt;li&gt;Demystify complex geospatial workflows&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Personal Growth&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/about/</guid>
+      <description>&lt;p&gt;Hello! I’m Sig, and I’m excited to welcome you to my blog. I love exploring the intersection of technology and the environment. My journey began with a degree in Geography, which ignited my interest in how we can use spatial data to solve real-world problems.&lt;/p&gt;&#xA;&lt;p&gt;In my career, I&amp;rsquo;ve had the privilege of working with diverse teams across various sectors, including local government, tech, and real estate. I believe in the power of data to inform decision-making and drive positive change.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
