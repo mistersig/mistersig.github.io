@@ -1,0 +1,380 @@
+/* ---- 90s Mac-ish B/W vibe ---- */
+:root {
+    --bg: #f2f2f2;
+    --fg: #111;
+    --line: #000;
+    --shadow: #000;
+    --win: #fff;
+    --menubar: #fff;
+
+    --font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+
+    --titlebar-h: 28px;
+    --icon-size: 48px;
+    --radius: 0px;
+    /* keep it sharp */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--fg);
+    overflow: hidden;
+    /* feels like an OS */
+}
+
+/* Menu bar */
+.menubar {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    background: var(--menubar);
+    border-bottom: 2px solid var(--line);
+}
+
+.menubar__left {
+    display: flex;
+    gap: 8px;
+}
+
+.menubar__right {
+    font-size: 12px;
+}
+
+.menuitem {
+    font: inherit;
+    background: transparent;
+    border: 2px solid transparent;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.menuitem:hover,
+.menuitem:focus-visible {
+    border-color: var(--line);
+    outline: none;
+}
+
+/* Desktop */
+.desktop {
+    position: relative;
+    height: calc(100% - 34px);
+    width: 100%;
+    background: var(--bg);
+}
+
+/* Slight faux grain (optional) */
+.grain {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image: repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.03) 0px,
+            rgba(0, 0, 0, 0.03) 1px,
+            rgba(0, 0, 0, 0.00) 2px,
+            rgba(0, 0, 0, 0.00) 4px);
+}
+
+/* Icons grid */
+.icons {
+    position: absolute;
+    inset: 10px;
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 92px));
+    gap: 14px;
+    align-content: start;
+    padding: 6px;
+}
+
+.icon {
+    width: 92px;
+    user-select: none;
+    cursor: default;
+    text-align: center;
+    padding: 6px 4px;
+    border: 2px solid transparent;
+    background: transparent;
+}
+
+.icon:focus-visible {
+    outline: none;
+    border-color: var(--line);
+}
+
+.icon:hover {
+    border-color: #000;
+}
+
+.icon__glyph {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: 0 auto 6px auto;
+    display: block;
+}
+
+/* “Folder” glyph in pure CSS */
+.folder {
+    position: relative;
+    width: 48px;
+    height: 34px;
+    border: 2px solid var(--line);
+    background: var(--win);
+    margin: 7px auto 0 auto;
+}
+
+.folder::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 6px;
+    width: 22px;
+    height: 10px;
+    border: 2px solid var(--line);
+    border-bottom: none;
+    background: var(--win);
+}
+
+.icon__label {
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* Windows */
+.window-layer {
+    position: absolute;
+    inset: 34px 0 0 0;
+    /* default below menu */
+    pointer-events: none;
+    /* windows re-enable */
+}
+
+.window {
+    pointer-events: auto;
+    position: absolute;
+    width: min(560px, 90vw);
+    height: min(360px, 60vh);
+    background: var(--win);
+    color: var(--fg);
+    border: 2px solid var(--line);
+
+    /* classic “drop shadow” */
+    box-shadow: 6px 6px 0 var(--shadow);
+}
+
+.window.is-focused {
+    box-shadow: 8px 8px 0 var(--shadow);
+}
+
+.titlebar {
+    height: var(--titlebar-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    border-bottom: 2px solid var(--line);
+    background: #fff;
+    cursor: grab;
+    user-select: none;
+}
+
+.titlebar:active {
+    cursor: grabbing;
+}
+
+.titlebar__title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.titlebar__buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.winbtn {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--line);
+    background: #fff;
+    padding: 0;
+    cursor: pointer;
+}
+
+.winbtn:focus-visible {
+    outline: 2px dotted var(--line);
+    outline-offset: 2px;
+}
+
+.window__content {
+    height: calc(100% - var(--titlebar-h));
+    overflow: auto;
+    padding: 10px;
+    font-size: 13px;
+}
+
+/* Finder list style */
+.finder-list {
+    border: 2px solid var(--line);
+    background: #fff;
+}
+
+.finder-list__row {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    gap: 10px;
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--line);
+}
+
+.finder-list__row:last-child {
+    border-bottom: none;
+}
+
+.finder-name {
+    font-weight: 700;
+}
+
+.finder-meta {
+    text-align: right;
+    font-size: 12px;
+}
+
+/* Links that look OS-ish */
+a {
+    color: #000;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid var(--line);
+    margin: 12px 0;
+}
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+   Desktop-first, then scale down
+=========================== */
+
+/* Large desktop: more breathing room */
+@media (min-width: 1200px) {
+    .icons {
+        gap: 16px;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
+    }
+
+    .window {
+        width: 600px;
+        height: 380px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .icons {
+        grid-template-columns: repeat(auto-fill, minmax(88px, 88px));
+        gap: 12px;
+    }
+
+    .window {
+        width: 92vw;
+        height: 56vh;
+    }
+
+    .menubar {
+        padding: 0 8px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    body {
+        overflow: hidden;
+    }
+
+    /* Menu wraps if needed */
+    .menubar {
+        height: auto;
+        min-height: 34px;
+        padding: 6px 8px;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .menubar__left {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .menuitem {
+        padding: 8px 10px;
+        /* bigger tap target */
+    }
+
+    /* desktop area changes because menubar can be taller now */
+    .desktop {
+        height: calc(100% - 56px);
+    }
+
+    /* window layer top inset changes too */
+    .window-layer {
+        inset: 56px 0 0 0;
+    }
+
+    /* icons tighter */
+    .icons {
+        inset: 8px;
+        grid-template-columns: repeat(auto-fill, minmax(82px, 82px));
+        gap: 10px;
+    }
+
+    /* windows feel like apps */
+    .window {
+        width: 96vw;
+        height: 70vh;
+        box-shadow: 4px 4px 0 var(--shadow);
+    }
+
+    .titlebar {
+        height: 34px;
+        /* taller for touch */
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .icons {
+        grid-template-columns: repeat(auto-fill, minmax(76px, 76px));
+    }
+
+    .icon__label {
+        font-size: 11px;
+    }
+
+    .window {
+        height: 74vh;
+    }
+}

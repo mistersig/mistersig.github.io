@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sig G — Desktop Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <!-- Menu Bar -->
+    <header class="menubar" role="banner">
+        <div class="menubar__left">
+            <button class="menuitem" data-action="open-about" aria-haspopup="dialog">
+                About Me
+            </button>
+            <button class="menuitem" data-action="open-resume" aria-haspopup="dialog">
+                Resume
+            </button>
+        </div>
+
+        <div class="menubar__right" aria-label="System clock">
+            <span id="clock">--:--</span>
+        </div>
+    </header>
+
+    <!-- Desktop -->
+    <main class="desktop" id="desktop" aria-label="Desktop">
+        <section class="icons" id="icons" aria-label="Desktop icons"></section>
+
+        <!-- optional: subtle “grain” layer -->
+        <div class="grain" aria-hidden="true"></div>
+    </main>
+
+    <!-- Window Layer -->
+    <div class="window-layer" id="windowLayer" aria-label="Open windows"></div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
