@@ -27,10 +27,10 @@ Focus areas:
       id: "upp461",
       title: "UPP 461: Introduction to GIS",
       year: "2026",
-      description: "Random quote generator with DOM rendering and events.",
+      description: "Online support modules for upp-461",
       links: [
-        { label: "Repo", href: "https://github.com/your-username/webdev-workbench" },
-        { label: "Live Demo", href: "https://your-username.github.io/webdev-workbench/" }
+        { label: "Repo", href: "https://github.com/mistersig/upp-461-hub" },
+        { label: "Live Demo", href: "https://mistersig.github.io/upp-461-hub/index.html" }
       ],
       tech: ["Vanilla JS", "DOM", "Events"]
     },
