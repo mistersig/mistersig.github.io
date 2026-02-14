@@ -1,178 +1,238 @@
-/* ===========================
-   DATA (edit these!)
-=========================== */
+(() => {
+  /* ===========================
+     Data (edit these!)
+  =========================== */
+  const ABOUT_TEXT = `
+Hi — I'm Sig. 
 
-const ABOUT_TEXT = `
-Hi — I'm Sig G.
+This portfolio is a cyberpunk-styled Linux desktop UI built in vanilla JS.
+It aims to stay WCAG-friendly: keyboard operable, clear focus, high contrast.
 
-I build web + GIS tooling and I like clean UI, strong fundamentals, and shipping.
-This portfolio is styled like an early 90s black-and-white Mac desktop — because why not.
-
-What I'm currently focusing on:
+Focus areas:
 - Vanilla JS fundamentals
-- Front-end patterns that translate well to React
+- UI patterns that translate well to React
 - GIS + visualization projects
 
-Contact:
-- Email: your.email@example.com
-- GitHub: https://github.com/your-username
-`;
+- GitHub: https://github.com/mistersig
+- LinkedIn: https://www.linkedin.com/in/sigfridogomez/ 
 
-const RESUME_TEXT = `
-SIG G
-City, State • your.email@example.com • github.com/your-username
+  `.trim();
 
-SUMMARY
-Developer with a GIS / data background building user-facing tooling and web apps.
+//   const RESUME_TEXT = `
+// Update me later
+//   `.trim();
 
-SKILLS
-JavaScript, HTML, CSS, Python, Git, APIs, (add ESRI/ArcGIS items here)
-
-EXPERIENCE
-Role — Company (Year–Year)
-- Impact bullet
-- Impact bullet
-
-EDUCATION
-Degree — School
-`;
-
-/* Desktop “folders” (portfolio projects) */
-const PROJECTS = [
+  const PROJECTS = [
     {
-        id: "proj-vibes",
-        title: "Vibe Quotes App",
-        year: "2026",
-        description:
-            "Random quote generator with DOM rendering, event handling, and clean architecture.",
-        links: [
-            { label: "Repo", href: "https://github.com/your-username/webdev-workbench" },
-            { label: "Live Demo", href: "https://your-username.github.io/webdev-workbench/" }
-        ],
-        tech: ["Vanilla JS", "DOM", "Events"]
+      id: "upp461",
+      title: "UPP 461: Introduction to GIS",
+      year: "2026",
+      description: "Random quote generator with DOM rendering and events.",
+      links: [
+        { label: "Repo", href: "https://github.com/your-username/webdev-workbench" },
+        { label: "Live Demo", href: "https://your-username.github.io/webdev-workbench/" }
+      ],
+      tech: ["Vanilla JS", "DOM", "Events"]
     },
     {
-        id: "proj-map",
-        title: "Mini Map Explorer",
-        year: "2026",
-        description:
-            "A small map/data explorer project (replace this with your actual project).",
-        links: [{ label: "Repo", href: "https://github.com/your-username/mini-map-explorer" }],
-        tech: ["JS", "Data", "Maps"]
+      id: "proj-map",
+      title: "Mini Map Explorer",
+      year: "2026",
+      description: "Small map/data explorer project (replace with your real one).",
+      links: [{ label: "Repo", href: "https://github.com/your-username/mini-map-explorer" }],
+      tech: ["JS", "Data", "Maps"]
     },
     {
-        id: "proj-toolkit",
-        title: "UI Toolkit Notes",
-        year: "2026",
-        description:
-            "Reusable UI helpers: modals, toasts, drag-and-drop — all in plain JS.",
-        links: [{ label: "Repo", href: "https://github.com/your-username/ui-toolkit-notes" }],
-        tech: ["Vanilla JS", "UI"]
+      id: "proj-toolkit",
+      title: "UI Toolkit Notes",
+      year: "2026",
+      description: "Reusable UI helpers: windows, dialogs, patterns — plain JS.",
+      links: [{ label: "Repo", href: "https://github.com/your-username/ui-toolkit-notes" }],
+      tech: ["Vanilla JS", "UI"]
     }
-];
+  ];
 
-/* ===========================
-   WINDOW SYSTEM
-=========================== */
+  /* ===========================
+     Elements + State
+  =========================== */
+  const iconsEl = document.getElementById("icons");
+  const windowLayer = document.getElementById("windowLayer");
+  const clockEl = document.getElementById("clock");
+  const panelButtons = Array.from(document.querySelectorAll(".panelbtn"));
 
-const icons = document.getElementById("icons");
-const windowLayer = document.getElementById("windowLayer");
-const clockEl = document.getElementById("clock");
+  let topZ = 10;
+  const openWindows = new Map(); // key -> element
+  let lastFocusedBeforeOpen = null;
 
-let topZ = 10;
-let openWindows = new Map(); // key -> element
+  if (!iconsEl || !windowLayer || !clockEl) return;
 
-function setClock() {
+  /* ===========================
+     Theme cycling (affects background + UI via CSS variables)
+  =========================== */
+  const THEMES = ["teal", "amber", "violet"];
+  const themeKey = "desktopTheme";
+
+  function setTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem(themeKey, t); } catch {}
+  }
+
+  function getTheme() {
+    try { return localStorage.getItem(themeKey); } catch { return null; }
+  }
+
+  // Initialize theme
+  const saved = getTheme();
+  setTheme(THEMES.includes(saved) ? saved : "teal");
+
+  function cycleTheme() {
+    const current = document.documentElement.getAttribute("data-theme") || "teal";
+    const idx = THEMES.indexOf(current);
+    const next = THEMES[(idx + 1) % THEMES.length];
+    setTheme(next);
+  }
+
+  /* ===========================
+     Clock
+  =========================== */
+  function setClock() {
     const d = new Date();
     const hh = String(d.getHours()).padStart(2, "0");
     const mm = String(d.getMinutes()).padStart(2, "0");
     clockEl.textContent = `${hh}:${mm}`;
-}
-setClock();
-setInterval(setClock, 10_000);
+  }
+  setClock();
+  setInterval(setClock, 10_000);
 
-/* Create desktop icons */
-function renderIcons() {
-    icons.innerHTML = "";
+  /* ===========================
+     Icons (CSS-only folder glyph)
+  =========================== */
+  function buildFolderGlyph() {
+    const icon = document.createElement("span");
+    icon.className = "folder-icon";
+    icon.setAttribute("aria-hidden", "true");
+
+    const back = document.createElement("span");
+    back.className = "folder-back";
+    const front = document.createElement("span");
+    front.className = "folder-front";
+    const tab = document.createElement("span");
+    tab.className = "folder-tab";
+    const lines = document.createElement("span");
+    lines.className = "folder-lines";
+
+    icon.appendChild(back);
+    icon.appendChild(front);
+    icon.appendChild(tab);
+    icon.appendChild(lines);
+    return icon;
+  }
+
+  function clearIconSelection() {
+    iconsEl.querySelectorAll(".iconbtn[aria-selected='true']").forEach((b) => {
+      b.setAttribute("aria-selected", "false");
+    });
+  }
+
+  function renderIcons() {
+    iconsEl.innerHTML = "";
 
     PROJECTS.forEach((p) => {
-        const btn = document.createElement("button");
-        btn.className = "icon";
-        btn.type = "button";
-        btn.setAttribute("data-action", "open-project");
-        btn.setAttribute("data-project-id", p.id);
-        btn.title = p.title;
+      const btn = document.createElement("button");
+      btn.className = "iconbtn";
+      btn.type = "button";
+      btn.setAttribute("aria-label", `Open project folder: ${p.title}`);
+      btn.setAttribute("aria-selected", "false");
 
-        // folder glyph
-        const glyph = document.createElement("span");
-        glyph.className = "icon__glyph folder";
-        glyph.setAttribute("aria-hidden", "true");
+      btn.appendChild(buildFolderGlyph());
 
-        const label = document.createElement("div");
-        label.className = "icon__label";
-        label.textContent = p.title;
+      const label = document.createElement("div");
+      label.className = "iconlabel";
+      label.textContent = p.title;
+      btn.appendChild(label);
 
-        btn.appendChild(glyph);
-        btn.appendChild(label);
+      // selection state (not color-only; border/bg changes too)
+      btn.addEventListener("focus", () => {
+        clearIconSelection();
+        btn.setAttribute("aria-selected", "true");
+      });
 
-        // Finder-ish behavior:
-        // - single click = focus
-        // - double click = open
-        btn.addEventListener("click", () => btn.focus());
-        btn.addEventListener("dblclick", () => openProjectWindow(p.id));
-
-        icons.appendChild(btn);
+      btn.addEventListener("click", () => openProjectWindow(p.id));
+      iconsEl.appendChild(btn);
     });
-}
-renderIcons();
+  }
+  renderIcons();
 
-/* Helpers */
-function bringToFront(winEl) {
+  // Clicking empty desktop clears selection
+  document.getElementById("desktop")?.addEventListener("mousedown", (e) => {
+    const target = e.target;
+    if (target && target.closest && target.closest(".iconbtn")) return;
+    clearIconSelection();
+  });
+
+  /* ===========================
+     Window system
+  =========================== */
+  function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+  }
+
+  function bringToFront(winEl) {
     topZ += 1;
     winEl.style.zIndex = String(topZ);
-
     document.querySelectorAll(".window").forEach((w) => w.classList.remove("is-focused"));
     winEl.classList.add("is-focused");
-}
+  }
 
-function clamp(n, min, max) {
-    return Math.max(min, Math.min(max, n));
-}
-
-function centerWindow(winEl) {
+  function centerWindow(winEl) {
     const rect = windowLayer.getBoundingClientRect();
     const w = winEl.offsetWidth;
     const h = winEl.offsetHeight;
     const left = Math.round((rect.width - w) / 2);
     const top = Math.round((rect.height - h) / 3);
-    winEl.style.left = `${clamp(left, 10, rect.width - w - 10)}px`;
-    winEl.style.top = `${clamp(top, 10, rect.height - h - 10)}px`;
-}
+    winEl.style.left = `${clamp(left, 8, rect.width - w - 8)}px`;
+    winEl.style.top = `${clamp(top, 8, rect.height - h - 8)}px`;
+  }
 
-function offsetWindow(winEl, i) {
+  function offsetWindow(winEl, i) {
     const rect = windowLayer.getBoundingClientRect();
     const w = winEl.offsetWidth;
     const h = winEl.offsetHeight;
-    const left = clamp(30 + i * 22, 10, rect.width - w - 10);
-    const top = clamp(30 + i * 18, 10, rect.height - h - 10);
+    const left = clamp(28 + i * 22, 8, rect.width - w - 8);
+    const top = clamp(28 + i * 18, 8, rect.height - h - 8);
     winEl.style.left = `${left}px`;
     winEl.style.top = `${top}px`;
-}
+  }
 
-function closeWindow(key) {
+  function closeWindow(key) {
     const el = openWindows.get(key);
     if (!el) return;
+
     el.remove();
     openWindows.delete(key);
-}
 
-function createWindow({ key, title, contentNode }) {
-    // If already open, focus it
-    if (openWindows.has(key)) {
-        const existing = openWindows.get(key);
-        bringToFront(existing);
-        return existing;
+    if (lastFocusedBeforeOpen && typeof lastFocusedBeforeOpen.focus === "function") {
+      lastFocusedBeforeOpen.focus();
+      lastFocusedBeforeOpen = null;
     }
+  }
+
+  function focusFirstControl(winEl) {
+    const focusable = winEl.querySelector(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable) focusable.focus();
+  }
+
+  function createWindow({ key, title, contentNode }) {
+    if (openWindows.has(key)) {
+      const existing = openWindows.get(key);
+      bringToFront(existing);
+      focusFirstControl(existing);
+      return existing;
+    }
+
+    lastFocusedBeforeOpen = document.activeElement;
 
     const win = document.createElement("div");
     win.className = "window is-focused";
@@ -194,7 +254,7 @@ function createWindow({ key, title, contentNode }) {
     const closeBtn = document.createElement("button");
     closeBtn.className = "winbtn";
     closeBtn.type = "button";
-    closeBtn.setAttribute("aria-label", "Close window");
+    closeBtn.setAttribute("aria-label", `Close window: ${title}`);
     closeBtn.addEventListener("click", () => closeWindow(key));
 
     buttons.appendChild(closeBtn);
@@ -208,163 +268,179 @@ function createWindow({ key, title, contentNode }) {
     win.appendChild(titlebar);
     win.appendChild(content);
 
-    // click to focus
     win.addEventListener("mousedown", () => bringToFront(win));
-
-    // drag
     makeDraggable(win, titlebar);
 
     windowLayer.appendChild(win);
 
-    // place window (desktop cascade, mobile center)
     const idx = openWindows.size;
     const isMobile = window.matchMedia("(max-width: 600px)").matches;
-
-    if (isMobile) {
-        centerWindow(win);
-    } else {
-        offsetWindow(win, idx);
-    }
+    if (isMobile) centerWindow(win);
+    else offsetWindow(win, idx);
 
     openWindows.set(key, win);
+    focusFirstControl(win);
     return win;
-}
+  }
 
-function makeDraggable(winEl, handleEl) {
+  function makeDraggable(winEl, handleEl) {
     let dragging = false;
     let startX = 0, startY = 0;
     let startLeft = 0, startTop = 0;
 
     function onDown(e) {
-        // only left mouse drag
-        if (e.button !== 0) return;
+      if (e.button !== 0) return;
+      dragging = true;
+      bringToFront(winEl);
 
-        dragging = true;
-        bringToFront(winEl);
+      const rect = winEl.getBoundingClientRect();
+      const layerRect = windowLayer.getBoundingClientRect();
+      startX = e.clientX;
+      startY = e.clientY;
+      startLeft = rect.left - layerRect.left;
+      startTop = rect.top - layerRect.top;
 
-        const rect = winEl.getBoundingClientRect();
-        const layerRect = windowLayer.getBoundingClientRect();
-
-        startX = e.clientX;
-        startY = e.clientY;
-        startLeft = rect.left - layerRect.left;
-        startTop = rect.top - layerRect.top;
-
-        document.addEventListener("mousemove", onMove);
-        document.addEventListener("mouseup", onUp);
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp);
     }
 
     function onMove(e) {
-        if (!dragging) return;
+      if (!dragging) return;
 
-        const layerRect = windowLayer.getBoundingClientRect();
-        const w = winEl.offsetWidth;
-        const h = winEl.offsetHeight;
+      const layerRect = windowLayer.getBoundingClientRect();
+      const w = winEl.offsetWidth;
+      const h = winEl.offsetHeight;
 
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
 
-        const left = clamp(startLeft + dx, 0, layerRect.width - w);
-        const top = clamp(startTop + dy, 0, layerRect.height - h);
-
-        winEl.style.left = `${left}px`;
-        winEl.style.top = `${top}px`;
+      winEl.style.left = `${clamp(startLeft + dx, 0, layerRect.width - w)}px`;
+      winEl.style.top = `${clamp(startTop + dy, 0, layerRect.height - h)}px`;
     }
 
     function onUp() {
-        dragging = false;
-        document.removeEventListener("mousemove", onMove);
-        document.removeEventListener("mouseup", onUp);
+      dragging = false;
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
     }
 
     handleEl.addEventListener("mousedown", onDown);
-}
+  }
 
-/* ===========================
-   CONTENT BUILDERS
-=========================== */
-
-function makeTextPanel(text) {
-    const wrapper = document.createElement("div");
-
+  /* ===========================
+     Content builders
+  =========================== */
+  function makeTextPanel(text, { linkify = false } = {}) {
+    const wrap = document.createElement("div");
     const pre = document.createElement("pre");
     pre.style.whiteSpace = "pre-wrap";
     pre.style.margin = "0";
-    pre.textContent = text.trim();
+    const normalized = String(text).trim();
 
-    wrapper.appendChild(pre);
-    return wrapper;
-}
+    if (!linkify) {
+      pre.textContent = normalized;
+    } else {
+      const escaped = escapeHtml(normalized);
+      const withLinks = escaped.replace(
+        /https?:\/\/[^\s<]+/g,
+        (url) => `<a href="${url}" target="_blank" rel="noreferrer">${url}</a>`
+      );
+      pre.innerHTML = withLinks;
+    }
 
-function makeLinksPanel(links) {
+    wrap.appendChild(pre);
+    return wrap;
+  }
+
+  function makeLinksPanel(links) {
     const wrap = document.createElement("div");
     const ul = document.createElement("ul");
     ul.style.margin = "0";
     ul.style.paddingLeft = "18px";
 
     links.forEach((l) => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = l.href;
-        a.target = "_blank";
-        a.rel = "noreferrer";
-        a.textContent = l.label;
-        li.appendChild(a);
-        ul.appendChild(li);
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = l.href;
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.textContent = l.label;
+      li.appendChild(a);
+      ul.appendChild(li);
     });
 
     wrap.appendChild(ul);
     return wrap;
-}
+  }
 
-function makeFinderList(project) {
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function makeProjectList(project) {
     const wrap = document.createElement("div");
 
     const header = document.createElement("div");
     header.innerHTML = `
-    <div style="font-weight:700;">${escapeHtml(project.title)}</div>
-    <div style="font-size:12px; margin-top:6px;">${escapeHtml(project.description)}</div>
-    <hr />
-  `;
+      <div style="font-weight:800;">${escapeHtml(project.title)}</div>
+      <div style="font-size:12px; margin-top:6px; color: var(--muted);">${escapeHtml(project.description)}</div>
+      <hr />
+    `;
     wrap.appendChild(header);
 
     const list = document.createElement("div");
-    list.className = "finder-list";
+    list.className = "listbox";
 
-    // “files” inside folder: README + LINKS
     const rows = [
-        {
-            name: "README.txt",
-            meta: project.year,
-            node: makeTextPanel(
-                `${project.title}\n\n${project.description}\n\nTech:\n- ${project.tech.join("\n- ")}`
-            )
-        },
-        {
-            name: "LINKS.txt",
-            meta: `${project.links.length} items`,
-            node: makeLinksPanel(project.links)
-        }
+      {
+        name: "README.txt",
+        meta: project.year,
+        makeNode: () =>
+          makeTextPanel(
+            `${project.title}\n\n${project.description}\n\nTech:\n- ${project.tech.join("\n- ")}`
+          )
+      },
+      {
+        name: "LINKS.txt",
+        meta: `${project.links.length} items`,
+        makeNode: () => makeLinksPanel(project.links)
+      }
     ];
 
     rows.forEach((r) => {
-        const row = document.createElement("div");
-        row.className = "finder-list__row";
-        row.innerHTML = `
-      <div class="finder-name">${escapeHtml(r.name)}</div>
-      <div class="finder-meta">${escapeHtml(r.meta)}</div>
-    `;
+      const row = document.createElement("div");
+      row.className = "listrow";
+      row.tabIndex = 0;
+      row.setAttribute("role", "button");
+      row.setAttribute("aria-label", `Open file ${r.name} in ${project.title}`);
 
-        row.tabIndex = 0;
-        row.addEventListener("dblclick", () => {
-            createWindow({
-                key: `${project.id}:${r.name}`,
-                title: `${project.title} — ${r.name}`,
-                contentNode: r.node
-            });
+      row.innerHTML = `
+        <div class="listname">${escapeHtml(r.name)}</div>
+        <div class="listmeta">${escapeHtml(r.meta)}</div>
+      `;
+
+      function openIt() {
+        createWindow({
+          key: `${project.id}:${r.name}`,
+          title: `${project.title} — ${r.name}`,
+          contentNode: r.makeNode()
         });
+      }
 
-        list.appendChild(row);
+      row.addEventListener("click", openIt);
+      row.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openIt();
+        }
+      });
+
+      list.appendChild(row);
     });
 
     wrap.appendChild(list);
@@ -372,94 +448,78 @@ function makeFinderList(project) {
     const hint = document.createElement("div");
     hint.style.marginTop = "10px";
     hint.style.fontSize = "12px";
-    hint.textContent = "Tip: double-click a file row to open it.";
+    hint.style.color = "var(--muted)";
+    hint.textContent = "Tip: Select a file row and press Enter (or click) to open it.";
     wrap.appendChild(hint);
 
     return wrap;
-}
+  }
 
-function escapeHtml(str) {
-    return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
-
-/* ===========================
-   OPEN WINDOWS
-=========================== */
-
-function openAbout() {
+  /* ===========================
+     Open windows
+  =========================== */
+  function openAbout() {
     createWindow({
-        key: "about",
-        title: "About Me",
-        contentNode: makeTextPanel(ABOUT_TEXT)
+      key: "about",
+      title: "About",
+      contentNode: makeTextPanel(ABOUT_TEXT, { linkify: true })
     });
-}
+  }
 
-function openResume() {
-    createWindow({
-        key: "resume",
-        title: "Resume",
-        contentNode: makeTextPanel(RESUME_TEXT)
-    });
-}
+  // function openResume() {
+  //   createWindow({ key: "resume", title: "Resume", contentNode: makeTextPanel(RESUME_TEXT) });
+  // }
 
-function openProjectWindow(projectId) {
+  function openProjectWindow(projectId) {
     const project = PROJECTS.find((p) => p.id === projectId);
     if (!project) return;
 
-    createWindow({
-        key: project.id,
-        title: project.title,
-        contentNode: makeFinderList(project)
-    });
-}
+    createWindow({ key: project.id, title: project.title, contentNode: makeProjectList(project) });
+  }
 
-/* ===========================
-   MENU EVENTS
-=========================== */
-
-document.querySelectorAll(".menuitem").forEach((btn) => {
+  /* ===========================
+     Panel buttons
+  =========================== */
+  panelButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-        const action = btn.getAttribute("data-action");
-        if (action === "open-about") openAbout();
-        if (action === "open-resume") openResume();
+      const action = btn.getAttribute("data-action");
+      if (action === "open-about") openAbout();
+      // if (action === "open-resume") openResume();
+      if (action === "cycle-theme") cycleTheme();
     });
-});
+  });
 
-/* Keyboard: Esc closes top-most window */
-document.addEventListener("keydown", (e) => {
+  function cycleTheme() {
+    const current = document.documentElement.getAttribute("data-theme") || "teal";
+    const idx = THEMES.indexOf(current);
+    const next = THEMES[(idx + 1) % THEMES.length];
+    setTheme(next);
+  }
+
+  /* ESC closes top-most window */
+  document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
 
-    const wins = Array.from(openWindows.entries());
-    if (wins.length === 0) return;
-
-    let top = null;
+    let topKey = null;
     let topZLocal = -Infinity;
 
-    for (const [key, el] of wins) {
-        const z = Number(el.style.zIndex || 0);
-        if (z > topZLocal) {
-            topZLocal = z;
-            top = { key, el };
-        }
+    for (const [key, el] of openWindows.entries()) {
+      const z = Number(el.style.zIndex || 0);
+      if (z > topZLocal) {
+        topZLocal = z;
+        topKey = key;
+      }
     }
+    if (topKey) closeWindow(topKey);
+  });
 
-    if (top) closeWindow(top.key);
-});
-
-/* Mobile: re-center windows on resize/orientation change */
-window.addEventListener("resize", () => {
+  /* Mobile: re-center windows on resize/orientation */
+  window.addEventListener("resize", () => {
     const isMobile = window.matchMedia("(max-width: 600px)").matches;
     if (!isMobile) return;
+    for (const [, win] of openWindows.entries()) centerWindow(win);
+  });
 
-    for (const [, win] of openWindows.entries()) {
-        centerWindow(win);
-    }
-});
-
-/* Nice: open About on first load */
-openAbout();
+  /* Start */
+  openAbout();
+})();

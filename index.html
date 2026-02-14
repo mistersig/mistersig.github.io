@@ -1,42 +1,48 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sig G — Desktop Portfolio</title>
+    <title>Sig G — Cyberpunk Linux Desktop</title>
+
     <link rel="stylesheet" href="./css/styles.css" />
-</head>
+  </head>
 
-<body>
-    <!-- Menu Bar -->
-    <header class="menubar" role="banner">
-        <div class="menubar__left">
-            <button class="menuitem" data-action="open-about" aria-haspopup="dialog">
-                About Me
-            </button>
-            <button class="menuitem" data-action="open-resume" aria-haspopup="dialog">
-                Resume
-            </button>
-        </div>
+  <body>
+    <!-- Top panel -->
+    <header class="panel" role="banner">
+      <nav class="panel__center" aria-label="Top panel">
+        <button class="panelbtn" type="button" data-action="open-about" aria-haspopup="dialog">
+          About
+        </button>
+        <!-- <button class="panelbtn" type="button" data-action="open-resume" aria-haspopup="dialog">
+          Resume
+        </button> -->
+        <button class="panelbtn" type="button" data-action="cycle-theme" aria-label="Change theme color">
+          Theme
+        </button>
+      </nav>
 
-        <div class="menubar__right" aria-label="System clock">
-            <span id="clock">--:--</span>
-        </div>
+      <div class="panel__right">
+        <span class="chip" aria-label="System status">SYS: OK</span>
+        <span id="clock" class="chip" aria-label="System clock">--:--</span>
+      </div>
     </header>
 
     <!-- Desktop -->
-    <main class="desktop" id="desktop" aria-label="Desktop">
-        <section class="icons" id="icons" aria-label="Desktop icons"></section>
+    <main class="desktop" id="desktop" aria-label="Cyberpunk Linux desktop">
+      <section class="icons" id="icons" aria-label="Desktop icons"></section>
 
-        <!-- optional: subtle “grain” layer -->
-        <div class="grain" aria-hidden="true"></div>
+      <noscript>
+        <div class="noscript" role="status">
+          This site needs JavaScript enabled to display the desktop UI.
+        </div>
+      </noscript>
     </main>
 
-    <!-- Window Layer -->
+    <!-- Window layer -->
     <div class="window-layer" id="windowLayer" aria-label="Open windows"></div>
 
     <script src="./js/main.js"></script>
-</body>
-
+  </body>
 </html>
