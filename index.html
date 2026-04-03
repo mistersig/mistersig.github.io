@@ -1,48 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sig G — Cyberpunk Linux Desktop</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MisterSig — Developer, Designer, Explorer. Cyberpunk portfolio." />
+  <title>MisterSig — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="home">
 
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-  <body>
-    <!-- Top panel -->
-    <header class="panel" role="banner">
-      <nav class="panel__center" aria-label="Top panel">
-        <button class="panelbtn" type="button" data-action="open-about" aria-haspopup="dialog">
-          About
-        </button>
-        <!-- <button class="panelbtn" type="button" data-action="open-resume" aria-haspopup="dialog">
-          Resume
-        </button> -->
-        <button class="panelbtn" type="button" data-action="cycle-theme" aria-label="Change theme color">
-          Theme
-        </button>
-      </nav>
+  <header role="banner">
+    <!-- Nav is rendered by buildNav() in components.js -->
+    <nav id="site-nav" aria-label="Main navigation"></nav>
+  </header>
 
-      <div class="panel__right">
-        <span class="chip" aria-label="System status">SYS: OK</span>
-        <span id="clock" class="chip" aria-label="System clock">--:--</span>
-      </div>
-    </header>
+  <main id="main" tabindex="-1">
 
-    <!-- Desktop -->
-    <main class="desktop" id="desktop" aria-label="Cyberpunk Linux desktop">
-      <section class="icons" id="icons" aria-label="Desktop icons"></section>
+    <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-name">
 
-      <noscript>
-        <div class="noscript" role="status">
-          This site needs JavaScript enabled to display the desktop UI.
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__grid"></div>
+        <div class="hero__scanlines"></div>
+        <div class="hero__glows">
+          <div class="hero__glow hero__glow--cyan"></div>
+          <div class="hero__glow hero__glow--magenta"></div>
+          <div class="hero__glow hero__glow--yellow"></div>
         </div>
-      </noscript>
-    </main>
+      </div>
 
-    <!-- Window layer -->
-    <div class="window-layer" id="windowLayer" aria-label="Open windows"></div>
+      <div class="hero__content">
+        <span class="eyebrow" aria-hidden="true">// SYSTEM_ONLINE</span>
+        <!-- data-text mirrors the element's text content for the CSS glitch pseudo-elements -->
+        <h1 id="hero-name" class="hero__name glitch" data-text="MisterSig">MisterSig</h1>
+        <p class="hero__tagline">Developer. Designer. Explorer.</p>
+        <p class="hero__bio">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        </p>
+        <div class="hero__cta">
+          <a href="projects.html" class="btn btn--primary">View Projects</a>
+          <a href="contact.html" class="btn btn--outline">Get In Touch</a>
+        </div>
+      </div>
 
-    <script src="./js/main.js"></script>
-  </body>
+    </section>
+
+    <!-- ── Featured Work ─────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="featured-heading">
+      <div class="container">
+        <span class="eyebrow" aria-hidden="true">// FEATURED_WORK</span>
+        <h2 id="featured-heading" class="section__heading">Projects</h2>
+        <!-- Project cards injected by initHome() in main.js -->
+        <div id="projects-preview" class="projects-grid" aria-label="Featured projects"></div>
+        <div class="section__footer">
+          <a href="projects.html" class="btn btn--outline">View All Projects →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="site-footer" role="contentinfo">
+    <!-- Footer content injected by buildFooter() in components.js -->
+    <div id="site-footer-inner" class="container"></div>
+  </footer>
+
+  <noscript>
+    <p style="text-align:center;padding:2rem;color:#dde8f5;font-family:monospace;">
+      JavaScript is required to view this site's navigation and projects.
+    </p>
+  </noscript>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>

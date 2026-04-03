@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MisterSig — About. Background, approach, and timeline." />
+  <title>About — MisterSig</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="about">
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <nav id="site-nav" aria-label="Main navigation"></nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="page-offset">
+
+      <!-- ── Bio ───────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="about-heading">
+        <div class="container">
+          <span class="eyebrow" aria-hidden="true">// IDENTITY</span>
+          <h1 id="about-heading" class="section__heading">About</h1>
+
+          <div class="about-grid">
+            <!-- Photo placeholder — replace <span> with <img> when ready -->
+            <div class="about-photo" role="img" aria-label="Portrait of MisterSig — placeholder">
+              <span aria-hidden="true">[ portrait ]</span>
+            </div>
+
+            <div>
+              <!-- Headline text injected from SITE.about.headline -->
+              <h2 id="about-headline" class="about-headline"></h2>
+              <!-- Bio paragraphs injected from SITE.about.bio -->
+              <div id="about-bio" class="about-bio"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Timeline ───────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="timeline-heading">
+        <div class="container">
+          <span class="eyebrow" aria-hidden="true">// TIMELINE</span>
+          <h2 id="timeline-heading" class="section__heading">History</h2>
+          <!-- Timeline entries injected from SITE.about.timeline -->
+          <ol id="timeline-list" class="timeline" aria-label="Career and project timeline"></ol>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer id="site-footer" role="contentinfo">
+    <div id="site-footer-inner" class="container"></div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
